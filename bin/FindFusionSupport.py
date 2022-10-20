@@ -115,9 +115,9 @@ def TakeoutFusionSupport(lines):
                 for ll in lines:
                     print(ll, end='')
                 return thisname
-            if readinfo1[0] != readinfo2[0]:
-                clip1 = readinfo1[6]
-                clip2 = readinfo2[6]
+            if readinfo1[0] != readinfo2[0]:  # not the same genes
+                clip1 = readinfo1[6]  # CIGAR
+                clip2 = readinfo2[6]  # CIGAR
                 readlen = len(readinfo1[10])
                 clipsplit1 = SolveClip(clip1, readlen)
                 clipsplit2 = SolveClip(clip2, readlen)
@@ -210,6 +210,7 @@ for key in geneset:
     for i in geneset[key][2]:
         # posstr.append(str(i[0]) + ',' + str(i[1]) + '+' + str(i[2]) + '+' + str(i[3]) + ',' + str(i[4]) + '+' + str(i[5]) + ',' + str(i[6]) + ';')
         posstr.append(str(i[0]) + ',' + str(i[1]) + '+' + str(i[2]) + '+' + str(i[3]) + ',' + str(i[4]) + ';')
+        # brkpnt1, brkpnt2 + splitpnt1 + start_shift1, start_shift2
     posstr = set(posstr)
     for i in posstr:
         outfile.write(i)
